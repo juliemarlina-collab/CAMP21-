@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Programme — Camp21: Synergising Literacies 2026</title>
+  <meta name="description" content="Full 4-day programme schedule for Camp21 2026 at Kompleks Kraf Kuala Lumpur. 13–16 July 2026." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    /* ── Programme-specific styles ─────────────────────────────── */
+    .prog-hero {
+      background: var(--color-cream);
+      padding: 48px 0 40px;
+      border-bottom: 1px solid var(--tint-cream);
+    }
+    .prog-hero__inner {
+      display: grid; grid-template-columns: 1fr auto;
+      gap: var(--space-2xl); align-items: center;
+    }
+    .prog-hero h1 { color: var(--color-indigo); margin-bottom: var(--space-sm); }
+    .prog-hero p  { color: var(--color-charcoal); opacity: 0.7; max-width: 560px; }
+    .prog-hero__meta {
+      display: flex; flex-direction: column; gap: var(--space-sm); align-items: flex-end;
+    }
+    .meta-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: white; border: 1px solid var(--tint-cream);
+      border-radius: var(--radius-pill); padding: 8px 16px;
+      font-size: 0.875rem; font-weight: 500; color: var(--color-indigo);
+      box-shadow: var(--shadow-card);
+    }
+
+    /* ── Daily missions ─────────────────────────────────────────── */
+    .missions { background: white; padding: 56px 0; }
+    .missions__grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-md);
+      margin-top: var(--space-2xl);
+    }
+    .mission-card {
+      border-radius: var(--radius-md); overflow: hidden;
+      border: 1px solid var(--tint-cream); box-shadow: var(--shadow-card);
+    }
+    .mission-card__top {
+      padding: 20px; color: white;
+      display: flex; justify-content: space-between; align-items: flex-start;
+    }
+    .mission-card--1 .mission-card__top { background: var(--dt-empathise); }
+    .mission-card--2 .mission-card__top { background: var(--dt-define); }
+    .mission-card--3 .mission-card__top { background: var(--dt-prototype); }
+    .mission-card--4 .mission-card__top { background: var(--dt-test); }
+    .mission-card__day {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; opacity: 0.8;
+    }
+    .mission-card__date { font-size: 0.8rem; opacity: 0.75; }
+    .mission-card__title {
+      font-family: var(--font-heading); font-size: 1rem; font-weight: 700;
+      margin-top: var(--space-sm);
+    }
+    .mission-card__body { padding: 16px; background: var(--color-cream); }
+    .mission-card__output {
+      font-size: 0.75rem; font-weight: 700; color: var(--color-pink);
+      letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px;
+    }
+    .mission-card__templates {
+      display: flex; flex-wrap: wrap; gap: 4px;
+    }
+    .template-tag {
+      display: inline-block; padding: 3px 8px;
+      background: white; border: 1px solid var(--tint-cream);
+      border-radius: var(--radius-pill); font-size: 0.7rem;
+      color: var(--color-indigo); font-weight: 600;
+    }
+    .mission-card__lead {
+      margin-top: 10px; padding-top: 10px;
+      border-top: 1px solid var(--tint-cream);
+      font-size: 0.75rem; color: var(--color-charcoal); opacity: 0.65;
+    }
+    .mission-card__lead strong { color: var(--color-indigo); opacity: 1; }
+
+    /* ── Tab selector ───────────────────────────────────────────── */
+    .tab-bar {
+      background: var(--color-indigo); position: sticky; top: 64px; z-index: 100;
+      border-bottom: 1px solid rgba(248,242,234,0.08);
+    }
+    .tab-bar__inner {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: var(--space-md);
+    }
+    .tab-list { display: flex; gap: 0; list-style: none; }
+    .tab-btn {
+      display: flex; flex-direction: column; align-items: center;
+      padding: 14px 24px; background: none; border: none; cursor: pointer;
+      border-bottom: 3px solid transparent;
+      font-family: var(--font-body); color: rgba(248,242,234,0.6);
+      transition: all 0.2s;
+    }
+    .tab-btn:hover { color: var(--color-cream); }
+    .tab-btn[aria-selected="true"] {
+      color: var(--color-pink); border-bottom-color: var(--color-pink);
+    }
+    .tab-btn__day  { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+    .tab-btn__date { font-size: 0.875rem; font-weight: 600; margin-top: 2px; }
+    .tab-bar__dl {
+      display: flex; gap: var(--space-sm); flex-shrink: 0; padding-right: var(--space-md);
+    }
+
+    /* ── Schedule table ─────────────────────────────────────────── */
+    .schedule-section { padding: 40px 0 56px; }
+    .schedule-panel { display: none; }
+    .schedule-panel.is-active { display: block; }
+    .schedule-panel__header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: var(--space-xl); flex-wrap: wrap; gap: var(--space-md);
+    }
+    .schedule-panel__title {
+      font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700;
+      color: var(--color-indigo);
+    }
+    .schedule-panel__theme {
+      font-size: 0.875rem; color: var(--color-charcoal); opacity: 0.6;
+      margin-top: 4px;
+    }
+    .schedule-table {
+      width: 100%; border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+    .schedule-table thead th {
+      background: var(--color-indigo); color: white;
+      padding: 12px 16px; text-align: left;
+      font-family: var(--font-body); font-size: 0.75rem;
+      font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    }
+    .schedule-table tbody tr { border-bottom: 1px solid var(--tint-cream); }
+    .schedule-table tbody tr:nth-child(even) { background: var(--color-cream); }
+    .schedule-table tbody tr:hover { background: var(--tint-lavender); }
+    .schedule-table td { padding: 12px 16px; vertical-align: top; }
+    .schedule-table .time-col {
+      font-weight: 600; color: var(--color-indigo);
+      white-space: nowrap; width: 120px;
+    }
+    .schedule-table .activity-col { color: var(--color-charcoal); }
+    .schedule-table .venue-col {
+      color: var(--color-charcoal); opacity: 0.65; white-space: nowrap;
+    }
+    .schedule-table .notes-col { font-size: 0.8125rem; color: var(--color-charcoal); opacity: 0.6; }
+
+    /* Row variants */
+    .row--prayer  { background: var(--tint-gold) !important; }
+    .row--prayer .time-col { color: var(--dt-prototype); }
+    .row--special { background: var(--tint-lavender) !important; }
+    .row--special .time-col { color: var(--dt-empathise); }
+    .row--speaker { background: var(--tint-pink) !important; }
+    .row--speaker .time-col { color: var(--dt-ideate); }
+    .row--pitch   { background: var(--tint-pink) !important; }
+    .row--pitch .time-col { color: var(--dt-ideate); font-weight: 700; }
+
+    .badge {
+      display: inline-block; padding: 2px 8px;
+      border-radius: var(--radius-pill); font-size: 0.7rem; font-weight: 700;
+      margin-left: 6px; vertical-align: middle;
+    }
+    .badge--speaker { background: var(--tint-pink); color: var(--dt-ideate); }
+    .badge--prayer  { background: var(--tint-gold); color: var(--dt-prototype); }
+    .badge--pitch   { background: var(--tint-lavender); color: var(--dt-empathise); }
+
+    /* ── Venue & logistics ──────────────────────────────────────── */
+    .logistics { background: white; padding: 56px 0; }
+    .logistics__grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-2xl); }
+    .logistics-card {
+      background: var(--color-cream); border-radius: var(--radius-md);
+      padding: var(--space-xl); border: 1px solid var(--tint-cream);
+    }
+    .logistics-card h3 {
+      font-family: var(--font-heading); font-size: 1rem; font-weight: 700;
+      color: var(--color-indigo); margin-bottom: var(--space-md);
+    }
+    .logistics-card p, .logistics-card li {
+      font-size: 0.875rem; color: var(--color-charcoal); opacity: 0.75;
+      line-height: 1.6;
+    }
+    .logistics-card ul { list-style: none; padding: 0; }
+    .logistics-card li { padding: 6px 0; padding-left: 18px; position: relative; }
+    .logistics-card li::before {
+      content: '▸'; position: absolute; left: 0;
+      color: var(--color-pink); font-size: 0.625rem; top: 8px;
+    }
+    .map-placeholder {
+      width: 100%; height: 200px; background: var(--tint-lavender);
+      border-radius: var(--radius-sm); display: flex; align-items: center;
+      justify-content: center; font-size: 0.875rem; color: var(--color-charcoal);
+      opacity: 0.5; margin-bottom: var(--space-md);
+    }
+
+    /* ── Packing list ───────────────────────────────────────────── */
+    .packing { background: var(--color-cream); padding: 56px 0; }
+    .packing__grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-2xl); margin-top: var(--space-2xl); }
+    .checklist { list-style: none; padding: 0; }
+    .checklist li {
+      display: flex; align-items: flex-start; gap: var(--space-md);
+      padding: var(--space-md) 0; border-bottom: 1px solid var(--tint-cream);
+    }
+    .checklist input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--color-pink); flex-shrink: 0; margin-top: 2px; }
+    .checklist label { font-size: 0.9375rem; color: var(--color-charcoal); cursor: pointer; }
+    .checklist label span { font-size: 0.8125rem; display: block; opacity: 0.6; margin-top: 2px; }
+    .packing-progress { margin-top: var(--space-xl); }
+    .packing-progress__bar-bg {
+      background: var(--tint-cream); border-radius: var(--radius-pill);
+      height: 8px; overflow: hidden;
+    }
+    .packing-progress__bar {
+      height: 100%; background: var(--color-pink);
+      border-radius: var(--radius-pill); width: 0%;
+      transition: width 0.4s ease;
+    }
+    .packing-progress__text { font-size: 0.8125rem; color: var(--color-charcoal); opacity: 0.6; margin-top: 6px; }
+
+    /* Attire */
+    .attire-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); }
+    .attire-card {
+      background: white; border-radius: var(--radius-md); padding: var(--space-xl);
+      border: 1px solid var(--tint-cream); text-align: center;
+    }
+    .attire-card__icon { font-size: 2rem; margin-bottom: var(--space-sm); }
+    .attire-card__day  { font-size: 0.7rem; font-weight: 700; color: var(--color-pink);
+                         text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+    .attire-card__rule { font-size: 1rem; font-weight: 700; color: var(--color-indigo); margin-bottom: 6px; }
+    .attire-card__note { font-size: 0.8125rem; color: var(--color-charcoal); opacity: 0.65; }
+
+    /* ── Phase leaders band ─────────────────────────────────────── */
+    .leaders-band { background: var(--color-indigo); padding: 56px 0; }
+    .leaders-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--space-md); margin-top: var(--space-2xl); }
+    .leader-card {
+      border-radius: var(--radius-md); overflow: hidden; text-align: center;
+    }
+    .leader-card__top { padding: 20px 12px; color: white; }
+    .leader-card--1 .leader-card__top { background: var(--dt-empathise); }
+    .leader-card--2 .leader-card__top { background: var(--dt-define); }
+    .leader-card--3 .leader-card__top { background: var(--dt-ideate); }
+    .leader-card--4 .leader-card__top { background: var(--dt-prototype); }
+    .leader-card--5 .leader-card__top { background: var(--dt-test); }
+    .leader-card__phase { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.8; }
+    .leader-card__icon  { font-size: 1.75rem; margin: 6px 0; }
+    .leader-card__name-phase { font-family: var(--font-heading); font-size: 0.875rem; font-weight: 700; }
+    .leader-card__body { background: rgba(248,242,234,0.06); padding: 12px; border: 1px solid rgba(248,242,234,0.1); border-top: none; }
+    .leader-card__name  { font-size: 0.75rem; color: var(--color-cream); font-weight: 600; line-height: 1.3; }
+    .leader-card__phone { font-size: 0.7rem; color: rgba(248,242,234,0.5); margin-top: 4px; }
+
+    /* Responsive */
+    @media (max-width: 767px) {
+      .prog-hero__inner { grid-template-columns: 1fr; }
+      .prog-hero__meta  { align-items: flex-start; }
+      .missions__grid   { grid-template-columns: 1fr 1fr; }
+      .logistics__grid  { grid-template-columns: 1fr; }
+      .packing__grid    { grid-template-columns: 1fr; }
+      .attire-grid      { grid-template-columns: 1fr; }
+      .leaders-grid     { grid-template-columns: 1fr 1fr; }
+      .tab-list         { overflow-x: auto; }
+      .tab-btn          { padding: 12px 16px; }
+      .schedule-table   { font-size: 0.8125rem; }
+      .schedule-table .notes-col { display: none; }
+    }
+    @media (max-width: 480px) {
+      .missions__grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <!-- NAV -->
+  <header>
+    <nav class="nav" aria-label="Main navigation">
+      <div class="container">
+        <div class="nav__inner">
+          <a href="../index.html" class="nav__brand">
+            <span class="nav__brand-name">CAMP21</span>
+            <span class="nav__brand-sub">Synergising Literacies 2026</span>
+          </a>
+          <ul class="nav__links" id="nav-links" role="list">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../index.html#about">About</a></li>
+            <li><a href="programme.html" class="active" aria-current="page">Programme</a></li>
+            <li><a href="dt-journey.html">DT Journey</a></li>
+            <li><a href="participant-hub.html">Participant Hub</a></li>
+            <li><a href="updates.html">Updates</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+          <div class="nav__cta">
+            <a href="register.html" class="btn btn--primary btn--sm">Register Now →</a>
+          </div>
+          <button class="nav__hamburger" id="hamburger" aria-controls="nav-links"
+                  aria-expanded="false" aria-label="Open navigation menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- HERO -->
+    <section class="prog-hero" aria-labelledby="prog-title">
+      <div class="container">
+        <div class="prog-hero__inner">
+          <div>
+            <span class="eyebrow">Programme</span>
+            <h1 id="prog-title">Your 4-Day Journey at Kompleks Kraf KL</h1>
+            <p>Every day has a clear mission, a dedicated phase leader, and outputs that build toward your final pitch. Don't skip a session — each day helps your team go further.</p>
+          </div>
+          <div class="prog-hero__meta">
+            <div class="meta-pill">📅 13–16 July 2026</div>
+            <div class="meta-pill">📍 Kompleks Kraf Kuala Lumpur</div>
+            <div class="meta-pill">👥 60 students · 10 groups</div>
+            <a href="../docs/schedule.pdf" class="btn btn--primary btn--sm" style="margin-top:8px;">
+              ⬇ Download Schedule PDF
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DAILY MISSIONS -->
+    <section class="missions" aria-labelledby="missions-title">
+      <div class="container">
+        <span class="eyebrow">Before you read the schedule</span>
+        <h2 id="missions-title">What each day is <em>for</em></h2>
+        <p style="max-width:560px;opacity:0.7;margin-top:8px;">
+          Each day has one main mission and a set of template outputs. Know what you're working toward before you start.
+        </p>
+        <div class="missions__grid">
+
+          <div class="mission-card mission-card--1">
+            <div class="mission-card__top">
+              <div>
+                <div class="mission-card__day">Day 1 — Monday 13 July</div>
+                <div class="mission-card__title">Discover &amp; Empathise</div>
+              </div>
+              <span style="font-size:1.75rem;">🏛</span>
+            </div>
+            <div class="mission-card__body">
+              <div class="mission-card__output">Phase outputs</div>
+              <div class="mission-card__templates">
+                <span class="template-tag">T01</span>
+                <span class="template-tag">T02</span>
+                <span class="template-tag">T03</span>
+                <span class="template-tag">T04</span>
+              </div>
+              <div class="mission-card__lead">
+                Phase Leader: <strong>Julie Marlina binti Hasan</strong>
+                <br>AI Speaker: <strong>Ts. Sathya a/p Manoharan</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="mission-card mission-card--2">
+            <div class="mission-card__top">
+              <div>
+                <div class="mission-card__day">Day 2 — Tuesday 14 July</div>
+                <div class="mission-card__title">Define &amp; Ideate</div>
+              </div>
+              <span style="font-size:1.75rem;">💡</span>
+            </div>
+            <div class="mission-card__body">
+              <div class="mission-card__output">Phase outputs</div>
+              <div class="mission-card__templates">
+                <span class="template-tag">T05</span>
+                <span class="template-tag">T06</span>
+                <span class="template-tag">T07</span>
+                <span class="template-tag">T08</span>
+                <span class="template-tag">T09</span>
+                <span class="template-tag">T10</span>
+              </div>
+              <div class="mission-card__lead">
+                Define Lead: <strong>Noor Darliza binti Mohamad Zamri</strong>
+                <br>Ideation Lead: <strong>Ts. Mohammed Farid bin Ishak</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="mission-card mission-card--3">
+            <div class="mission-card__top">
+              <div>
+                <div class="mission-card__day">Day 3 — Wednesday 15 July</div>
+                <div class="mission-card__title">Prototype &amp; Test</div>
+              </div>
+              <span style="font-size:1.75rem;">🔧</span>
+            </div>
+            <div class="mission-card__body">
+              <div class="mission-card__output">Phase outputs</div>
+              <div class="mission-card__templates">
+                <span class="template-tag">T11</span>
+                <span class="template-tag">T12</span>
+                <span class="template-tag">T13</span>
+                <span class="template-tag">T14</span>
+              </div>
+              <div class="mission-card__lead">
+                Prototype Lead: <strong>Nor Haniza binti Mustafar Kamar</strong>
+                <br>Test Lead: <strong>Nurfarhanah binti Omar</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="mission-card mission-card--4">
+            <div class="mission-card__top">
+              <div>
+                <div class="mission-card__day">Day 4 — Thursday 16 July</div>
+                <div class="mission-card__title">Pitch &amp; Gallery Walk</div>
+              </div>
+              <span style="font-size:1.75rem;">🏆</span>
+            </div>
+            <div class="mission-card__body">
+              <div class="mission-card__output">Final output</div>
+              <div class="mission-card__templates">
+                <span class="template-tag">8-Slide Pitch</span>
+                <span class="template-tag">Gallery Showcase</span>
+              </div>
+              <div class="mission-card__lead">
+                Ketua Juri: <strong>Dr. Siti Zubaidah binti Ibrahim</strong>
+                <br>Panel + Closing Ceremony
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB BAR -->
+    <div class="tab-bar" id="tab-bar" aria-label="Select day to view schedule">
+      <div class="container">
+        <div class="tab-bar__inner">
+          <ul class="tab-list" role="tablist" aria-label="Programme days">
+            <li role="presentation">
+              <button class="tab-btn" role="tab" id="tab-day1"
+                      aria-controls="panel-day1" aria-selected="true">
+                <span class="tab-btn__day">Day 1</span>
+                <span class="tab-btn__date">Mon 13 July</span>
+              </button>
+            </li>
+            <li role="presentation">
+              <button class="tab-btn" role="tab" id="tab-day2"
+                      aria-controls="panel-day2" aria-selected="false">
+                <span class="tab-btn__day">Day 2</span>
+                <span class="tab-btn__date">Tue 14 July</span>
+              </button>
+            </li>
+            <li role="presentation">
+              <button class="tab-btn" role="tab" id="tab-day3"
+                      aria-controls="panel-day3" aria-selected="false">
+                <span class="tab-btn__day">Day 3</span>
+                <span class="tab-btn__date">Wed 15 July</span>
+              </button>
+            </li>
+            <li role="presentation">
+              <button class="tab-btn" role="tab" id="tab-day4"
+                      aria-controls="panel-day4" aria-selected="false">
+                <span class="tab-btn__day">Day 4</span>
+                <span class="tab-btn__date">Thu 16 July</span>
+              </button>
+            </li>
+          </ul>
+          <div class="tab-bar__dl">
+            <a href="../docs/schedule.pdf" class="btn btn--gold btn--sm">⬇ Full PDF</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCHEDULE PANELS -->
+    <section class="schedule-section" aria-label="Daily schedule">
+      <div class="container">
+
+        <!-- DAY 1 -->
+        <div class="schedule-panel is-active" id="panel-day1"
+             role="tabpanel" aria-labelledby="tab-day1">
+          <div class="schedule-panel__header">
+            <div>
+              <div class="schedule-panel__title">Monday, 13 July 2026</div>
+              <div class="schedule-panel__theme">Heritage Immersion · Empathise · AI Talk · KL Exploration</div>
+            </div>
+          </div>
+          <table class="schedule-table" aria-label="Day 1 schedule">
+            <thead>
+              <tr>
+                <th scope="col">Time</th>
+                <th scope="col">Programme</th>
+                <th scope="col">Venue</th>
+                <th scope="col">Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="time-col">7:00 am</td><td class="activity-col">Pick up Participants</td><td class="venue-col">Pick-up points</td><td class="notes-col">Avenue K & Pavilion KL pick-up points</td></tr>
+              <tr><td class="time-col">8:30–9:00 am</td><td class="activity-col">Registration &amp; Breakfast</td><td class="venue-col">Main Seminar Hall</td><td class="notes-col">—</td></tr>
+              <tr><td class="time-col">9:00–9:30 am</td><td class="activity-col">Programme Briefing / Smart Green Briefing</td><td class="venue-col">Main Seminar Hall</td><td class="notes-col">Programme Director overview</td></tr>
+              <tr><td class="time-col">9:30–10:00 am</td><td class="activity-col">Ice Breaking &amp; Group Formation</td><td class="venue-col">Main Seminar Hall</td><td class="notes-col">10 groups × 6 members formed here</td></tr>
+              <tr><td class="time-col">10:00 am–12:30 pm</td><td class="activity-col">Guided Craft Gallery Tour / Motif Exploration &amp; Artisan Interview</td><td class="venue-col">Main Seminar Hall</td><td class="notes-col">Lead Empathise: Julie Marlina binti Hasan · T01–T02</td></tr>
+              <tr class="row--prayer"><td class="time-col">12:30–2:00 pm</td><td class="activity-col">Lunch / Zohor Prayer <span class="badge badge--prayer">Prayer</span></td><td class="venue-col">Hall &amp; Surau</td><td class="notes-col">—</td></tr>
+              <tr class="row--speaker"><td class="time-col">2:00–3:00 pm</td><td class="activity-col">AI Talk — AI Tools for Design Thinking &amp; Cultural Heritage <span class="badge badge--speaker">Speaker</span></td><td class="venue-col">Main Seminar Hall</td><td class="notes-col">Ts. Sathya a/p Manoharan · Politeknik METrO KL</td></tr>
+              <tr class="row--speaker"><td class="time-col">3:00–3:30 pm</td><td class="activity-col">Pitching Talk — How to Pitch with Confidence <span class="badge badge--speaker">Speaker</span></td><td class="venue-col">Main Seminar Hall</td><td class="notes-col">Encik Prabagaran Bala Krisnan · Kolej Komuniti Selayang</td></tr>
+              <tr><td class="time-col">3:30–5:00 pm</td><td class="activity-col">Design Thinking Workshop: Empathise &amp; Define</td><td class="venue-col">Main Seminar Hall</td><td class="notes-col">Lead: Julie Marlina (Empathise) · T03–T04</td></tr>
+              <tr class="row--prayer"><td class="time-col">5:00–5:30 pm</td><td class="activity-col">Day 1 Reflection &amp; Asar Prayer <span class="badge badge--prayer">Prayer</span></td><td class="venue-col">Hall &amp; Surau</td><td class="notes-col">—</td></tr>
+              <tr class="row--prayer"><td class="time-col">5:30–7:00 pm</td><td class="activity-col">Dinner / Maghrib Prayer <span class="badge badge--prayer">Prayer</span></td><td class="venue-col">Main Seminar Hall</td><td class="notes-col">—</td></tr>
+              <tr class="row--special"><td class="time-col">8:30–10:30 pm</td><td class="activity-col">KL Exploration — Hop-On Hop-Off Bus &amp; Reflection</td><td class="venue-col">Around Kuala Lumpur</td><td class="notes-col">Bring outerwear · batik optional</td></tr>
+              <tr><td class="time-col">10:30 pm</td><td class="activity-col">Sending off Participants</td><td class="venue-col">Kompleks Kraf</td><td class="notes-col">—</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- DAY 2 -->
+        <div class="schedule-panel" id="panel-day2"
+             role="tabpanel" aria-labelledby="tab-day2" hidden>
+          <div class="schedule-panel__header">
+            <div>
+              <div class="schedule-panel__title">Tuesday, 14 July 2026</div>
+              <div class="schedule-panel__theme">Define · Ideate · Mind Mapping · Concept Sketching</div>
+            </div>
+          </div>
+          <table class="schedule-table" aria-label="Day 2 schedule">
+            <thead>
+              <tr>
+                <th scope="col">Time</th>
+                <th scope="col">Programme</th>
+                <th scope="col">Venue</th>
+                <th scope="col">Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="time-col">7:00 am</td><td class="activity-col">Pick up Participants</td><td class="venue-col">Pick-up points</td><td class="notes-col">—</td></tr>
+              <tr><td class="time-col">8:30–9:00 am</td><td class="activity-col">Breakfast</td><td class="venue-col">Main Seminar Hall</td><td class="notes-col">—</td></tr>
+              <tr><td class="time-col">9:00–10:30 am</td><td class="activity-col">Design Thinking Workshop: Ideate</td><td class="venue-col">Main Seminar Hall</td><td class="notes-col">Lead Ideation: Ts. Mohammed Farid bin Ishak · T08–T10</td></tr>
+              <tr><td class="time-col">10:30 am–12:00 pm</td><td class="activity-col">Motif Exploration &amp; Artisan Interview</td><td class="venue-col">Main Seminar Hall</td><td class="notes-col">Lead Define: Noor Darliza binti Mohamad Zamri · T05–T07</td></tr>
+              <tr class="row--prayer"><td class="time-col">12:00–1:30 pm</td><td class="activity-col">Lunch / Zohor Prayer <span class="badge badge--prayer">Prayer</span></td><td class="venue-col">Hall &amp; Surau</td><td class="notes-col">—</td></tr>
+              <tr><td class="time-col">1:30–2:30 pm</td><td class="activity-col">Mind Mapping &amp; Concept Sketching</td><td class="venue-col">Main Seminar Hall</td><td class="notes-col">AI-assisted idea generation · SMART DT App</td></tr>
+              <tr><td class="time-col">2:30–3:30 pm</td><td class="activity-col">Group Reflection</td><td class="venue-col">Main Seminar Hall</td><td class="notes-col">Programme Director monitors all groups</td></tr>
+              <tr class="row--prayer"><td class="time-col">7:30–8:30 pm</td><td class="activity-col">Dinner &amp; Maghrib Prayer <span class="badge badge--prayer">Prayer</span></td><td class="venue-col">Main Seminar Hall</td><td class="notes-col">—</td></tr>
+              <tr><td class="time-col">8:30–10:30 pm</td><td class="activity-col">Discussion</td><td class="venue-col">Main Seminar Hall</td><td class="notes-col">—</td></tr>
+              <tr><td class="time-col">10:30 pm</td><td class="activity-col">Sending off Participants</td><td class="venue-col">Kompleks Kraf</td><td class="notes-col">—</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- DAY 3 -->
+        <div class="schedule-panel" id="panel-day3"
+             role="tabpanel" aria-labelledby="tab-day3" hidden>
+          <div class="schedule-panel__header">
+            <div>
+              <div class="schedule-panel__title">Wednesday, 15 July 2026</div>
+              <div class="schedule-panel__theme">Prototyping · Tie Dye Workshop · Pitch Preparation · Closing Rehearsal</div>
+            </div>
+          </div>
+          <table class="schedule-table" aria-label="Day 3 schedule">
+            <thead>
+              <tr>
+                <th scope="col">Time</th>
+                <th scope="col">Programme</th>
+                <th scope="col">Venue</th>
+                <th scope="col">Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="time-col">7:00 am</td><td class="activity-col">Pick up Participants</td><td class="venue-col">Pick-up points</td><td class="notes-col">—</td></tr>
+              <tr><td class="time-col">8:30–9:00 am</td><td class="activity-col">Breakfast</td><td class="venue-col">Main Seminar Hall</td><td class="notes-col">—</td></tr>
+              <tr><td class="time-col">9:00–11:00 am</td><td class="activity-col">Prototyping Workshop</td><td class="venue-col">Main Seminar Hall</td><td class="notes-col">Lead Prototype: Nor Haniza binti Mustafar Kamar · T11–T13</td></tr>
+              <tr class="row--special"><td class="time-col">11:00 am–12:30 pm</td><td class="activity-col">Tie Dye Workshop</td><td class="venue-col">Craft Area</td><td class="notes-col">Cultural heritage hands-on session</td></tr>
+              <tr class="row--prayer"><td class="time-col">12:30–1:30 pm</td><td class="activity-col">Lunch / Zohor Prayer <span class="badge badge--prayer">Prayer</span></td><td class="venue-col">Surau</td><td class="notes-col">—</td></tr>
+              <tr><td class="time-col">1:30–3:30 pm</td><td class="activity-col">Pitch &amp; Storytelling Preparation</td><td class="venue-col">Main Seminar Hall</td><td class="notes-col">Lead Test: Nurfarhanah binti Omar · T14 · Pitch structure alignment</td></tr>
+              <tr><td class="time-col">3:30–5:00 pm</td><td class="activity-col">Closing Rehearsal</td><td class="venue-col">Laman Wau</td><td class="notes-col">Groups rehearse pitch delivery · 10 min each</td></tr>
+              <tr class="row--prayer"><td class="time-col">5:30–8:30 pm</td><td class="activity-col">Dinner / Maghrib Prayer <span class="badge badge--prayer">Prayer</span></td><td class="venue-col">Main Seminar Hall &amp; Surau</td><td class="notes-col">—</td></tr>
+              <tr><td class="time-col">8:30–10:30 pm</td><td class="activity-col">Discussion</td><td class="venue-col">Main Seminar Hall</td><td class="notes-col">—</td></tr>
+              <tr><td class="time-col">10:30 pm</td><td class="activity-col">Sending off Participants</td><td class="venue-col">Kompleks Kraf</td><td class="notes-col">—</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- DAY 4 -->
+        <div class="schedule-panel" id="panel-day4"
+             role="tabpanel" aria-labelledby="tab-day4" hidden>
+          <div class="schedule-panel__header">
+            <div>
+              <div class="schedule-panel__title">Thursday, 16 July 2026</div>
+              <div class="schedule-panel__theme">Pitching · Panel Feedback · Closing Ceremony &amp; Prize Giving</div>
+            </div>
+          </div>
+          <table class="schedule-table" aria-label="Day 4 schedule">
+            <thead>
+              <tr>
+                <th scope="col">Time</th>
+                <th scope="col">Programme</th>
+                <th scope="col">Venue</th>
+                <th scope="col">Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="time-col">7:00 am</td><td class="activity-col">Pick up Participants</td><td class="venue-col">Pick-up points</td><td class="notes-col">—</td></tr>
+              <tr><td class="time-col">8:30–9:00 am</td><td class="activity-col">Breakfast</td><td class="venue-col">Main Seminar Hall</td><td class="notes-col">—</td></tr>
+              <tr class="row--pitch"><td class="time-col">9:00–9:15 am</td><td class="activity-col">Group 1 Pitch <span class="badge badge--pitch">Pitch</span></td><td class="venue-col">Laman Wau</td><td class="notes-col">10 min pitch + 5 min Q&amp;A</td></tr>
+              <tr class="row--pitch"><td class="time-col">9:15–9:30 am</td><td class="activity-col">Group 2 Pitch <span class="badge badge--pitch">Pitch</span></td><td class="venue-col">Laman Wau</td><td class="notes-col">10 min pitch + 5 min Q&amp;A</td></tr>
+              <tr class="row--pitch"><td class="time-col">9:30–9:45 am</td><td class="activity-col">Group 3 Pitch <span class="badge badge--pitch">Pitch</span></td><td class="venue-col">Laman Wau</td><td class="notes-col">10 min pitch + 5 min Q&amp;A</td></tr>
+              <tr class="row--pitch"><td class="time-col">9:45–10:00 am</td><td class="activity-col">Group 4 Pitch <span class="badge badge--pitch">Pitch</span></td><td class="venue-col">Laman Wau</td><td class="notes-col">10 min pitch + 5 min Q&amp;A</td></tr>
+              <tr class="row--pitch"><td class="time-col">10:00–10:15 am</td><td class="activity-col">Group 5 Pitch <span class="badge badge--pitch">Pitch</span></td><td class="venue-col">Laman Wau</td><td class="notes-col">10 min pitch + 5 min Q&amp;A</td></tr>
+              <tr class="row--pitch"><td class="time-col">10:15–10:30 am</td><td class="activity-col">Group 6 Pitch <span class="badge badge--pitch">Pitch</span></td><td class="venue-col">Laman Wau</td><td class="notes-col">10 min pitch + 5 min Q&amp;A</td></tr>
+              <tr class="row--pitch"><td class="time-col">10:30–10:45 am</td><td class="activity-col">Group 7 Pitch <span class="badge badge--pitch">Pitch</span></td><td class="venue-col">Laman Wau</td><td class="notes-col">10 min pitch + 5 min Q&amp;A</td></tr>
+              <tr class="row--pitch"><td class="time-col">10:45–11:00 am</td><td class="activity-col">Group 8 Pitch <span class="badge badge--pitch">Pitch</span></td><td class="venue-col">Laman Wau</td><td class="notes-col">10 min pitch + 5 min Q&amp;A</td></tr>
+              <tr class="row--pitch"><td class="time-col">11:00–11:15 am</td><td class="activity-col">Group 9 Pitch <span class="badge badge--pitch">Pitch</span></td><td class="venue-col">Laman Wau</td><td class="notes-col">10 min pitch + 5 min Q&amp;A</td></tr>
+              <tr class="row--pitch"><td class="time-col">11:15–11:30 am</td><td class="activity-col">Group 10 Pitch <span class="badge badge--pitch">Pitch</span></td><td class="venue-col">Laman Wau</td><td class="notes-col">10 min pitch + 5 min Q&amp;A</td></tr>
+              <tr><td class="time-col">11:30 am–12:30 pm</td><td class="activity-col">Panel Feedback</td><td class="venue-col">Laman Wau</td><td class="notes-col">Dr. Siti Zubaidah (Ketua Juri) · Dr. Hajah Noreen · Encik Prabagaran · Encik Richie Arvind</td></tr>
+              <tr class="row--prayer"><td class="time-col">12:30–1:30 pm</td><td class="activity-col">Lunch Break</td><td class="venue-col">Laman Wau</td><td class="notes-col">—</td></tr>
+              <tr class="row--prayer"><td class="time-col">1:30–2:30 pm</td><td class="activity-col">Zohor Prayer <span class="badge badge--prayer">Prayer</span></td><td class="venue-col">Surau</td><td class="notes-col">—</td></tr>
+              <tr class="row--special"><td class="time-col">2:30–4:00 pm</td><td class="activity-col">Closing Ceremony &amp; Prize Giving</td><td class="venue-col">Laman Wau</td><td class="notes-col">All participants, judges, speakers, organisers</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- VENUE & LOGISTICS -->
+    <section class="logistics" aria-labelledby="logistics-title">
+      <div class="container">
+        <span class="eyebrow">Venue &amp; Getting Here</span>
+        <h2 id="logistics-title">Kompleks Kraf Kuala Lumpur</h2>
+        <p style="max-width:560px;opacity:0.7;margin-top:8px;margin-bottom:40px;">
+          Jalan Conlay, 50450 Kuala Lumpur. The Conlay MRT Station is directly opposite — easiest way to arrive.
+        </p>
+        <div class="logistics__grid">
+
+          <div class="logistics-card">
+            <h3>📍 Venue</h3>
+            <div class="map-placeholder" aria-label="Map placeholder — Kompleks Kraf KL, Jalan Conlay">
+              🗺 Map embed — Kompleks Kraf Kuala Lumpur
+            </div>
+            <ul>
+              <li><strong>MRT:</strong> Conlay Station is directly opposite Kompleks Kraf — easiest route</li>
+              <li><strong>Pick-up Point 1:</strong> Avenue K Drop-Off Bay, Jalan Ampang entrance</li>
+              <li><strong>Pick-up Point 2:</strong> Pavilion KL Bus / Coach Bay, Jalan Bukit Bintang side</li>
+              <li>Pick-up service departs at <strong>7:00 am sharp</strong> each day</li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="logistics-card" style="margin-bottom:16px;">
+              <h3>🏨 Recommended Accommodation</h3>
+              <ul>
+                <li><strong>Royale Chulan KL</strong> — 0.20 km · From RM235 · Tel: 03-2688 9688</li>
+                <li><strong>Pullman KL City Centre</strong> — 0.24 km · From RM340</li>
+                <li><strong>KLoe Hotel</strong> — 0.3 km · From RM260</li>
+                <li><strong>J-Hotel by Dorsett</strong> — 0.3 km · From RM180</li>
+                <li>Accommodation expenses are <strong>not covered</strong> by organiser</li>
+              </ul>
+            </div>
+            <div class="logistics-card">
+              <h3>🍽 Meals</h3>
+              <ul>
+                <li>Breakfast, lunch and dinner provided for <strong>participants only</strong></li>
+                <li>Dietary requirements collected at registration</li>
+                <li>Lecturers and guests — self-arranged</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- PACKING LIST & ATTIRE -->
+    <section class="packing" id="packing" aria-labelledby="packing-title">
+      <div class="container">
+        <span class="eyebrow">Before You Arrive</span>
+        <h2 id="packing-title">Packing list &amp; attire</h2>
+
+        <div class="packing__grid">
+
+          <div>
+            <h3 style="font-family:var(--font-heading);color:var(--color-indigo);margin-bottom:16px;">
+              What to bring — tick each item
+            </h3>
+            <ul class="checklist" id="packing-checklist" aria-label="Packing checklist">
+              <li>
+                <input type="checkbox" id="pack-laptop" class="readiness-item" />
+                <label for="pack-laptop">
+                  Laptop or tablet
+                  <span>Required for all workshops and project work</span>
+                </label>
+              </li>
+              <li>
+                <input type="checkbox" id="pack-charger" class="readiness-item" />
+                <label for="pack-charger">
+                  Charger &amp; extension socket
+                  <span>To share power during group activities</span>
+                </label>
+              </li>
+              <li>
+                <input type="checkbox" id="pack-stationery" class="readiness-item" />
+                <label for="pack-stationery">
+                  Stationery
+                  <span>Pens, markers, sticky notes</span>
+                </label>
+              </li>
+              <li>
+                <input type="checkbox" id="pack-phone" class="readiness-item" />
+                <label for="pack-phone">
+                  Mobile phone with sufficient data
+                  <span>For SMART DT App and communication</span>
+                </label>
+              </li>
+              <li>
+                <input type="checkbox" id="pack-medicine" class="readiness-item" />
+                <label for="pack-medicine">
+                  Personal medicine
+                  <span>Don't forget your regular medication</span>
+                </label>
+              </li>
+              <li>
+                <input type="checkbox" id="pack-jacket" class="readiness-item" />
+                <label for="pack-jacket">
+                  Light jacket / outerwear
+                  <span>For the night Hop-On Hop-Off bus tour on Day 1</span>
+                </label>
+              </li>
+              <li>
+                <input type="checkbox" id="pack-batik" class="readiness-item" />
+                <label for="pack-batik">
+                  Batik outfit
+                  <span>Required for closing ceremony on Thursday (Day 4)</span>
+                </label>
+              </li>
+            </ul>
+            <div class="packing-progress" aria-live="polite">
+              <div class="packing-progress__bar-bg">
+                <div class="packing-progress__bar" id="packing-bar"></div>
+              </div>
+              <p class="packing-progress__text" id="packing-text">0 of 7 packed</p>
+            </div>
+            <a href="../docs/packing-list.pdf" class="btn btn--primary btn--sm" style="margin-top:16px;">
+              ⬇ Download Packing List PDF
+            </a>
+          </div>
+
+          <div>
+            <h3 style="font-family:var(--font-heading);color:var(--color-indigo);margin-bottom:16px;">
+              Attire guide
+            </h3>
+            <div class="attire-grid">
+              <div class="attire-card">
+                <div class="attire-card__icon">👔</div>
+                <div class="attire-card__day">Day 1–3 · Mon–Wed</div>
+                <div class="attire-card__rule">Smart Casual</div>
+                <p class="attire-card__note">Comfortable and presentable. No slippers or singlets.</p>
+              </div>
+              <div class="attire-card">
+                <div class="attire-card__icon">🌸</div>
+                <div class="attire-card__day">Day 4 · Thursday</div>
+                <div class="attire-card__rule">Batik</div>
+                <p class="attire-card__note">Wear batik for the closing ceremony. Any batik style.</p>
+              </div>
+              <div class="attire-card">
+                <div class="attire-card__icon">🧥</div>
+                <div class="attire-card__day">Day 1 Night</div>
+                <div class="attire-card__rule">Bring Outerwear</div>
+                <p class="attire-card__note">You'll be on an open bus at night. Bring a jacket.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- PHASE LEADERS BAND -->
+    <section class="leaders-band" aria-labelledby="leaders-title">
+      <div class="container">
+        <span class="eyebrow" style="color:var(--color-gold);">Your Facilitators</span>
+        <h2 id="leaders-title" style="color:white;">One phase leader per DT phase — all from Politeknik Port Dickson</h2>
+        <p style="color:rgba(248,242,234,0.65);margin-top:8px;max-width:600px;">
+          Each phase leader guides all 10 groups through their assigned phase. They are your go-to person when your team is stuck.
+        </p>
+        <div class="leaders-grid" role="list">
+
+          <div class="leader-card leader-card--1" role="listitem">
+            <div class="leader-card__top">
+              <div class="leader-card__phase">Phase 01</div>
+              <div class="leader-card__icon" aria-hidden="true">🫀</div>
+              <div class="leader-card__name-phase">Empathise</div>
+            </div>
+            <div class="leader-card__body">
+              <div class="leader-card__name">Julie Marlina binti Hasan</div>
+              <div class="leader-card__phone">0173182511</div>
+            </div>
+          </div>
+
+          <div class="leader-card leader-card--2" role="listitem">
+            <div class="leader-card__top">
+              <div class="leader-card__phase">Phase 02</div>
+              <div class="leader-card__icon" aria-hidden="true">🔬</div>
+              <div class="leader-card__name-phase">Define</div>
+            </div>
+            <div class="leader-card__body">
+              <div class="leader-card__name">Noor Darliza binti Mohamad Zamri</div>
+              <div class="leader-card__phone">0123275488</div>
+            </div>
+          </div>
+
+          <div class="leader-card leader-card--3" role="listitem">
+            <div class="leader-card__top">
+              <div class="leader-card__phase">Phase 03</div>
+              <div class="leader-card__icon" aria-hidden="true">💡</div>
+              <div class="leader-card__name-phase">Ideation</div>
+            </div>
+            <div class="leader-card__body">
+              <div class="leader-card__name">Ts. Mohammed Farid bin Ishak</div>
+              <div class="leader-card__phone">0132048483</div>
+            </div>
+          </div>
+
+          <div class="leader-card leader-card--4" role="listitem">
+            <div class="leader-card__top">
+              <div class="leader-card__phase">Phase 04</div>
+              <div class="leader-card__icon" aria-hidden="true">🔩</div>
+              <div class="leader-card__name-phase">Prototype</div>
+            </div>
+            <div class="leader-card__body">
+              <div class="leader-card__name">Nor Haniza binti Mustafar Kamar</div>
+              <div class="leader-card__phone">0127644214</div>
+            </div>
+          </div>
+
+          <div class="leader-card leader-card--5" role="listitem">
+            <div class="leader-card__top">
+              <div class="leader-card__phase">Phase 05</div>
+              <div class="leader-card__icon" aria-hidden="true">🎯</div>
+              <div class="leader-card__name-phase">Test &amp; Iteration</div>
+            </div>
+            <div class="leader-card__body">
+              <div class="leader-card__name">Nurfarhanah binti Omar</div>
+              <div class="leader-card__phone">0125716112</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer" aria-labelledby="footer-label">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__heading" id="footer-label">Quick Links</div>
+          <ul class="footer__links" role="list">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="register.html">Register</a></li>
+            <li><a href="dt-journey.html">DT Journey</a></li>
+            <li><a href="participant-hub.html">Participant Hub</a></li>
+            <li><a href="contact.html">Contact / FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer__heading">Need Help?</div>
+          <div class="footer__contact-item">📧 helpdesk@camp21.edu.my</div>
+          <div class="footer__contact-item">📞 +603 1234 5678</div>
+          <a href="contact.html" class="btn btn--outline btn--sm" style="margin-top:16px;">Visit Help Desk</a>
+        </div>
+        <div>
+          <div class="footer__heading">Join Community</div>
+          <div class="footer__qr" aria-label="Telegram QR placeholder">
+            <div><div style="font-size:1.5rem;margin-bottom:4px;">📲</div><div>Telegram QR</div></div>
+          </div>
+        </div>
+        <div>
+          <div class="footer__heading">Organised By</div>
+          <div class="footer__logos">
+            <div class="logo-card"><div class="logo-card__placeholder"><div style="font-size:1.25rem;">🏛</div><div>JPPKK</div></div></div>
+            <div class="logo-card"><div class="logo-card__placeholder"><div style="font-size:1.25rem;">🎓</div><div>PolyCC</div></div></div>
+            <div class="logo-card"><div class="logo-card__placeholder"><div style="font-size:1.25rem;">🏫</div><div>METrO KL</div></div></div>
+            <div class="logo-card"><div class="logo-card__placeholder"><div style="font-size:1.25rem;">🏺</div><div>Kompleks Kraf</div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copy">© 2026 Camp21: Synergising Literacies. All rights reserved.</p>
+        <nav class="footer__legal"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></nav>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Help -->
+  <div class="floating-help is-active" id="floating-help">
+    <div class="floating-help__panel" id="help-panel" role="dialog" aria-label="Need help?" aria-hidden="true">
+      <a href="#tab-bar" class="floating-help__option">📅 Today's schedule</a>
+      <a href="#logistics" class="floating-help__option">📍 Venue &amp; directions</a>
+      <a href="participant-hub.html" class="floating-help__option">📚 Participant Hub</a>
+      <a href="https://wa.me/60126224979" class="floating-help__option" target="_blank" rel="noopener">💬 Contact organiser</a>
+    </div>
+    <button class="floating-help__btn" id="help-toggle" aria-controls="help-panel" aria-expanded="false">
+      ❓ Need Help
+    </button>
+  </div>
+
+  <script>
+    // Tab switching
+    const tabs   = document.querySelectorAll('[role="tab"]');
+    const panels = document.querySelectorAll('[role="tabpanel"]');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t  => { t.setAttribute('aria-selected','false'); });
+        panels.forEach(p => { p.hidden = true; p.classList.remove('is-active'); });
+        tab.setAttribute('aria-selected','true');
+        const panel = document.getElementById(tab.getAttribute('aria-controls'));
+        if (panel) { panel.hidden = false; panel.classList.add('is-active'); }
+      });
+      tab.addEventListener('keydown', e => {
+        const list = Array.from(tabs);
+        const i    = list.indexOf(tab);
+        if (e.key === 'ArrowRight') list[(i+1) % list.length].focus();
+        if (e.key === 'ArrowLeft')  list[(i-1+list.length) % list.length].focus();
+      });
+    });
+
+    // Packing checklist
+    const packItems = document.querySelectorAll('#packing-checklist input[type="checkbox"]');
+    const packBar   = document.getElementById('packing-bar');
+    const packText  = document.getElementById('packing-text');
+    const PACK_KEY  = 'camp21_packing_v1';
+
+    const saved = JSON.parse(localStorage.getItem(PACK_KEY) || '{}');
+    packItems.forEach(cb => { if (saved[cb.id]) cb.checked = true; });
+    updatePacking();
+
+    packItems.forEach(cb => {
+      cb.addEventListener('change', () => {
+        const s = {};
+        packItems.forEach(i => s[i.id] = i.checked);
+        localStorage.setItem(PACK_KEY, JSON.stringify(s));
+        updatePacking();
+      });
+    });
+
+    function updatePacking() {
+      const total   = packItems.length;
+      const checked = Array.from(packItems).filter(i => i.checked).length;
+      const pct     = Math.round((checked / total) * 100);
+      if (packBar)  packBar.style.width = pct + '%';
+      if (packText) packText.textContent = `${checked} of ${total} packed`;
+    }
+
+    // Floating help
+    const ht = document.getElementById('help-toggle');
+    const hp = document.getElementById('help-panel');
+    if (ht && hp) {
+      ht.addEventListener('click', () => {
+        const open = hp.classList.toggle('is-open');
+        ht.setAttribute('aria-expanded', String(open));
+        hp.setAttribute('aria-hidden', String(!open));
+      });
+    }
+
+    // Mobile nav
+    const hb = document.getElementById('hamburger');
+    const nl = document.getElementById('nav-links');
+    if (hb && nl) {
+      hb.addEventListener('click', () => {
+        const open = hb.getAttribute('aria-expanded') === 'true';
+        hb.setAttribute('aria-expanded', String(!open));
+        nl.classList.toggle('is-open');
+      });
+    }
+  </script>
+</body>
+</html>
