@@ -1,0 +1,231 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Judge Portal · Camp21</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/Camp21-Synergising-Literacies-2026/css/camp21-heritage.css">
+<style>
+.score-group{margin-bottom:18px}
+.score-group label{display:block;font-size:13px;font-weight:700;color:#333;margin-bottom:4px}
+.score-group .hint{font-size:11px;color:#888;margin-bottom:8px}
+.score-btns{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.score-btn{width:42px;height:42px;border-radius:10px;border:2px solid #ddd;background:#f9f9f9;font-weight:700;font-size:14px;cursor:pointer;transition:.15s}
+.score-btn.active{background:#1a2744;color:#fff;border-color:#1a2744}
+.score-inp{width:68px;padding:8px;border:2px solid #ddd;border-radius:10px;font-size:14px;font-weight:700;text-align:center}
+.score-disp{font-size:12px;color:#2d4a8a;font-weight:700;min-width:70px}
+.total-bar{background:linear-gradient(90deg,#1a2744,#2d4a8a);color:#fff;border-radius:12px;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;margin:18px 0}
+.total-bar .lbl{font-size:12px;opacity:.75}
+.total-val{font-size:32px;font-weight:800}
+.pitch-order-row{display:flex;gap:14px;align-items:center;padding:12px 16px;border-bottom:1px solid #f0f0f0}
+.pitch-order-row:last-child{border-bottom:none}
+.pitch-num{width:36px;height:36px;border-radius:50%;background:#1a2744;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0}
+.pitch-time{font-size:12px;color:#888;min-width:100px}
+.save-banner{background:#e8f5e9;border-radius:12px;padding:12px 16px;color:#2e7d32;font-weight:700;font-size:13px;display:none;margin-top:10px}
+</style>
+</head><body>
+<div class="org-strip"><div class="wide org-inner">
+  <div class="org-item"><img class="org-logo" src="/Camp21-Synergising-Literacies-2026/assets/logo/logo-kpt-jppkk.png" alt="KPT JPPKK"><span class="org-label">Kementerian Pendidikan Tinggi<strong>JPPKK</strong></span></div>
+  <div class="org-divider"></div>
+  <div class="org-item"><img class="org-logo" src="/Camp21-Synergising-Literacies-2026/assets/logo/logo-polycc.png" alt="PolyCC"><span class="org-label">Politeknik &amp; <strong>Kolej Komuniti</strong></span></div>
+  <div class="org-divider"></div>
+  <div class="org-item"><img class="org-logo" src="/Camp21-Synergising-Literacies-2026/assets/logo/logo-politeknik-metro.png" alt="Politeknik METrO KL"><span class="org-label">Politeknik METrO<strong>Kuala Lumpur</strong></span></div>
+  <div class="org-divider"></div>
+  <div class="org-item"><img class="org-logo" src="/Camp21-Synergising-Literacies-2026/assets/logo/logo-kompleks-kraf.png" alt="Kompleks Kraf KL"><span class="org-label">Kompleks Kraf<strong>Kuala Lumpur</strong></span></div>
+</div></div>
+<header class="site-header"><div class="wide nav">
+  <a class="brand" href="/Camp21-Synergising-Literacies-2026/index.html"><img src="/Camp21-Synergising-Literacies-2026/assets/logo/Camp21-badge-logo.png" alt="Camp21" height="46" onerror="this.outerHTML='&lt;span class=\'brand-text\'&gt;Camp&lt;span&gt;21&lt;/span&gt;&lt;/span&gt;'"></a>
+  <nav class="nav-links"><a href="/Camp21-Synergising-Literacies-2026/index.html">Home</a><a href="programme.html">Programme</a><a href="trainers.html">Trainers</a><a href="groups.html">Groups</a><a href="dt-journey.html">DT Journey</a><a href="gallery-walk.html">Gallery Walk</a><a href="judges.html" class="active">Judges</a><a href="participants.html">Participants</a><a href="organiser.html">Organiser</a><a href="activity-updates.html">Updates</a><a href="contacts.html">Contacts</a></nav>
+  <div class="nav-cta"><span class="lang">🇲🇾 EN</span><a class="btn btn-orange btn-small" href="https://shorturl.at/Mo98y" target="_blank" rel="noopener">Register Now →</a><button class="menu-btn" aria-label="Menu">☰</button></div>
+</div></header>
+<main>
+<section class="page-hero"><div class="wide">
+  <div class="eyebrow">Camp21 Heritage Command Hub</div>
+  <h1>Judge Portal</h1>
+  <p>Pitch evaluation, score card, rubric and Q&A guide for judges.</p>
+</div></section>
+
+<section class="section section-alt"><div class="wide">
+
+  <!-- Judge hero banner -->
+  <div style="background:linear-gradient(135deg,#1a2744,#c8922a);border-radius:20px;padding:28px 24px;color:#fff;margin-bottom:24px">
+    <div style="font-size:11px;font-weight:700;letter-spacing:2px;opacity:.7;margin-bottom:6px">JUDGE PORTAL · CAMP21 2026</div>
+    <h2 style="font-family:'Playfair Display',serif;font-size:28px;margin:0 0 6px">Pitching Evaluation</h2>
+    <p style="opacity:.8;margin:0;font-size:14px">16 July 2026 · Laman Wau · Kompleks Kraf Kuala Lumpur · Batik Attire</p>
+  </div>
+
+  <div style="background:#fff8e8;border:1.5px solid #c8922a;border-radius:12px;padding:14px 16px;font-size:13px;color:#8b6010;margin-bottom:24px">
+    ⚠️ <strong>Judges:</strong> Complete one score card per group. All 5 criteria must be scored. Total is out of 100.
+  </div>
+
+  <div class="grid-2" style="margin-bottom:28px">
+
+    <!-- Pitch Rules -->
+    <div class="info-card">
+      <div class="badge">📋 Pitch Rules</div>
+      <h3>How It Works</h3>
+      <ul style="margin-top:10px">
+        <li style="padding:5px 0;font-size:13px">🔔 <strong>10 minutes</strong> maximum per group</li>
+        <li style="padding:5px 0;font-size:13px">🔔 Bell rings <strong>once</strong> at 9th minute</li>
+        <li style="padding:5px 0;font-size:13px">🔔 Bell rings <strong>twice</strong> at 10 minutes</li>
+        <li style="padding:5px 0;font-size:13px">❓ <strong>5 minutes</strong> Q&amp;A — max 2 questions</li>
+        <li style="padding:5px 0;font-size:13px">👥 Each group may appoint <strong>4 core presenters</strong>; other members support prototype, gallery station and Q&amp;A</li>
+        <li style="padding:5px 0;font-size:13px">🤖 AI must be <strong>part of the solution</strong></li>
+      </ul>
+    </div>
+
+    <!-- Pitch Order -->
+    <div class="info-card">
+      <div class="badge">📌 Pitch Order</div>
+      <h3>9:00 AM — 11:30 AM · Laman Wau</h3>
+      <div style="margin-top:10px">
+        <div class="pitch-order-row"><div class="pitch-num">1</div><div><strong>Team Warisan</strong><br><span class="pitch-time">9:00 – 9:15 AM</span></div></div>
+        <div class="pitch-order-row"><div class="pitch-num">2</div><div><strong>Team Tenun</strong><br><span class="pitch-time">9:20 – 9:35 AM</span></div></div>
+        <div class="pitch-order-row"><div class="pitch-num">3</div><div><strong>Team Batik</strong><br><span class="pitch-time">9:40 – 9:55 AM</span></div></div>
+        <div class="pitch-order-row"><div class="pitch-num">4</div><div><strong>Team Songket</strong><br><span class="pitch-time">10:00 – 10:15 AM</span></div></div>
+        <div class="pitch-order-row"><div class="pitch-num">5</div><div><strong>Team Ukiran</strong><br><span class="pitch-time">10:20 – 10:35 AM</span></div></div>
+        <div class="pitch-order-row"><div class="pitch-num">6</div><div><strong>Team Wau</strong><br><span class="pitch-time">10:40 – 10:55 AM</span></div></div>
+        <div style="padding:10px 16px;font-size:12px;color:#888">Panel Feedback: 11:00 – 11:30 AM</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rubric -->
+  <div class="info-card" style="padding:0;overflow:hidden;margin-bottom:24px">
+    <div style="padding:16px 20px;background:#f9f9f9;border-bottom:1px solid #eee"><strong>📊 Scoring Rubric</strong></div>
+    <table class="table">
+      <thead><tr><th>Criteria</th><th>Weight</th><th>What to assess</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Content &amp; Innovative Thinking</strong></td><td><span class="status progress">30</span></td><td>Creative, insightful problem + excellent AI &amp; DT integration</td></tr>
+        <tr><td><strong>Presentation &amp; Communication</strong></td><td><span class="status progress">30</span></td><td>Clear, confident, engaging delivery. Well-structured and persuasive</td></tr>
+        <tr><td><strong>Feasibility &amp; Impact</strong></td><td><span class="status done">20</span></td><td>Realistic plan, measurable impact, clear SDG 11 alignment</td></tr>
+        <tr><td><strong>Team Collaboration</strong></td><td><span class="status done">10</span></td><td>Balanced participation, cohesive teamwork and synergy</td></tr>
+        <tr><td><strong>Q&amp;A Handling</strong></td><td><span class="status done">10</span></td><td>Clear, confident answers that directly address questions</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Score Card -->
+  <div class="info-card" style="margin-bottom:24px">
+    <div class="badge">✏️ Score Card</div>
+    <h3>Judge Evaluation Form</h3>
+
+    <div class="grid-2" style="margin-top:14px">
+      <div><label style="display:block;font-size:13px;font-weight:700;margin-bottom:6px">Judge Name</label>
+        <input type="text" id="judgeName" class="score-inp" style="width:100%" placeholder="e.g. Prof. Dr. Ahmad"></div>
+      <div><label style="display:block;font-size:13px;font-weight:700;margin-bottom:6px">Group / Team</label>
+        <select id="groupSelect" class="score-inp" style="width:100%">
+          <option value="">— Select group —</option>
+          <option>Team Warisan (Group 1)</option><option>Team Tenun (Group 2)</option>
+          <option>Team Batik (Group 3)</option><option>Team Songket (Group 4)</option>
+          <option>Team Ukiran (Group 5)</option><option>Team Wau (Group 6)</option>
+        </select></div>
+    </div>
+
+    <div id="scoreCriteria" style="margin-top:18px"></div>
+
+    <div class="total-bar">
+      <div><div class="lbl">Total Score</div><div class="lbl" style="font-size:10px;opacity:.6">out of 100</div></div>
+      <div class="total-val" id="totalScore">0</div>
+    </div>
+
+    <div><label style="display:block;font-size:13px;font-weight:700;margin-bottom:6px">Judge Comments (optional)</label>
+      <textarea id="judgeComments" rows="3" style="width:100%;padding:10px;border:1.5px solid #ddd;border-radius:10px;font-family:inherit;font-size:13px;resize:vertical" placeholder="Strengths, suggestions or observations…"></textarea></div>
+
+    <button class="btn btn-orange" style="width:100%;margin-top:14px" onclick="submitScore()">Submit Score →</button><p style="font-size:11px;color:#888;margin-top:8px;text-align:center">Phase 3: this score card will be connected to Google Sheets / official Google Form.</p>
+    <div class="save-banner" id="saveBanner">✅ Score submitted! Form ready for next group.</div>
+  </div>
+
+  <!-- Q&A Guide -->
+  <div class="info-card">
+    <div class="badge">❓ Q&amp;A Question Bank</div>
+    <h3>Suggested Judge Questions</h3>
+    <div class="grid-2" style="margin-top:10px">
+      <div><p style="font-size:13px;padding:8px 0;border-bottom:1px solid #f0f0f0"><strong>On AI:</strong> "How specifically does AI power your solution? What would it do without AI?"</p>
+      <p style="font-size:13px;padding:8px 0;border-bottom:1px solid #f0f0f0"><strong>On SDG:</strong> "How does your solution contribute to SDG 11 specifically?"</p>
+      <p style="font-size:13px;padding:8px 0"><strong>On Heritage:</strong> "What did the artisan tell you that directly shaped your solution?"</p></div>
+      <div><p style="font-size:13px;padding:8px 0;border-bottom:1px solid #f0f0f0"><strong>On Impact:</strong> "Who benefits and how many people can you reach in Year 1?"</p>
+      <p style="font-size:13px;padding:8px 0;border-bottom:1px solid #f0f0f0"><strong>On Feasibility:</strong> "What is the biggest challenge and how will you overcome it?"</p>
+      <p style="font-size:13px;padding:8px 0"><strong>On Team:</strong> "Which team member was most responsible for the AI element?"</p></div>
+    </div>
+  </div>
+
+</div></section>
+
+<script>
+const CRITERIA = [
+  {id:'content', label:'I. Content & Innovative Thinking', max:30, hint:'Excellent 25–30 · Good 19–24 · Fair 13–18 · Needs Improvement 7–12'},
+  {id:'pres',    label:'II. Presentation & Communication', max:30, hint:'Excellent 25–30 · Good 19–24 · Fair 13–18 · Needs Improvement 7–12'},
+  {id:'feas',    label:'III. Feasibility & Impact',        max:20, hint:'Excellent 17–20 · Good 13–16 · Fair 9–12 · Needs Improvement 5–8'},
+  {id:'team',    label:'IV. Team Collaboration',           max:10, hint:'Excellent 9–10 · Good 7–8 · Fair 5–6 · Needs Improvement 3–4'},
+  {id:'qa',      label:'V. Q&A Handling',                  max:10, hint:'Excellent 9–10 · Good 7–8 · Fair 5–6 · Needs Improvement 3–4'},
+];
+const scores = {};
+CRITERIA.forEach(c => { scores[c.id]=null; });
+
+function buildScoreUI(){
+  const wrap = document.getElementById('scoreCriteria');
+  wrap.innerHTML = CRITERIA.map(c => {
+    const steps = c.max===30?[0,6,12,18,24,30]:c.max===20?[0,4,8,12,16,20]:[0,2,4,6,8,10];
+    const btns = steps.map(v=>`<button class="score-btn" data-cid="${c.id}" data-val="${v}" onclick="pick('${c.id}',${v},this)">${v}</button>`).join('');
+    return `<div class="score-group">
+      <label>${c.label} <span style="color:#c8922a">(max ${c.max})</span></label>
+      <div class="hint">${c.hint}</div>
+      <div class="score-btns">${btns}<input class="score-inp" type="number" min="0" max="${c.max}" id="inp-${c.id}" placeholder="0–${c.max}" oninput="pickInp('${c.id}',this)">
+      <span class="score-disp" id="disp-${c.id}">—</span></div>
+    </div>`;
+  }).join('');
+}
+
+function pick(cid,val,btn){
+  scores[cid]=val;
+  document.querySelectorAll(`[data-cid="${cid}"]`).forEach(b=>b.classList.toggle('active',+b.dataset.val===val));
+  document.getElementById('inp-'+cid).value=val;
+  document.getElementById('disp-'+cid).textContent=val+' / '+CRITERIA.find(c=>c.id===cid).max;
+  updateTotal();
+}
+function pickInp(cid,el){
+  const c=CRITERIA.find(x=>x.id===cid);
+  let v=Math.min(c.max,Math.max(0,+el.value||0));
+  el.value=v; pick(cid,v,null);
+  document.querySelectorAll(`[data-cid="${cid}"]`).forEach(b=>b.classList.toggle('active',+b.dataset.val===v));
+}
+function updateTotal(){
+  const t=Object.values(scores).reduce((s,v)=>s+(v||0),0);
+  document.getElementById('totalScore').textContent=t;
+}
+function submitScore(){
+  const judge=document.getElementById('judgeName').value.trim();
+  const group=document.getElementById('groupSelect').value;
+  if(!judge||!group){alert('Please enter your name and select a group.');return;}
+  if(Object.values(scores).some(v=>v===null)){alert('Please score all 5 criteria.');return;}
+  const total=Object.values(scores).reduce((s,v)=>s+(v||0),0);
+  const payload={timestamp:new Date().toISOString(),judge,group,scores,total,comments:document.getElementById('judgeComments').value};
+  const saved=JSON.parse(localStorage.getItem('camp21_scores')||'[]');
+  saved.push(payload); localStorage.setItem('camp21_scores',JSON.stringify(saved));
+  document.getElementById('saveBanner').style.display='block';
+  setTimeout(()=>{
+    document.getElementById('saveBanner').style.display='none';
+    document.getElementById('groupSelect').value='';
+    document.getElementById('judgeComments').value='';
+    CRITERIA.forEach(c=>{scores[c.id]=null;document.querySelectorAll(`[data-cid="${c.id}"]`).forEach(b=>b.classList.remove('active'));document.getElementById('inp-'+c.id).value='';document.getElementById('disp-'+c.id).textContent='—';});
+    updateTotal();
+  },3000);
+}
+buildScoreUI();
+</script>
+
+</main>
+<footer class="footer"><div class="wide footer-inner">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;width:100%;flex-wrap:wrap;gap:16px">
+    <div><b>Camp21: Synergising Literacies 2026</b><br>AI-Powered Design Thinking for Sustainable Cultural Heritage<br><span style="font-size:12px;opacity:.6;display:block;margin-top:4px">Kompleks Kraf Kuala Lumpur · 13–16 July 2026</span></div>
+    <div style="text-align:right;font-size:12px;opacity:.65">Inspired by Malaysian Arts · Driven by Ideas · Powered by AI<br><a href="https://t.me/+vTPGEFIaXMs5Mjhl" style="color:#e8c97a" target="_blank">Join Telegram →</a></div>
+  </div>
+  <div class="footer-org">
+    <img class="footer-org-logo" src="/Camp21-Synergising-Literacies-2026/assets/logo/logo-kpt-jppkk.png" alt="KPT">
+    <img class="footer-org-logo" src="/Camp21-Synergising-Literacies-2026/assets/logo/logo-polycc.png" alt="PolyCC">
+    <img class="footer-org-logo" src="/Camp21-Synergising-Literacies-2026/assets/logo/logo-politeknik-metro.png" alt="Politeknik">
+    <img class="footer-org-logo" src="/Camp21-Synergising-Literacies-2026/assets/logo/logo-kompleks-kraf.png" alt="Kompleks Kraf">
+  </div>
+</div></footer>
+<script src="/Camp21-Synergising-Literacies-2026/js/camp21-data.js"></script><script src="/Camp21-Synergising-Literacies-2026/js/camp21-main.js"></script>
+</body></html>
